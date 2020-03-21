@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html lang="en-US" xmlns:fb="https://www.facebook.com/2008/fbml" xmlns:addthis="https://www.addthis.com/help/api-spec"  prefix="og: http://ogp.me/ns#" class="no-js">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title><%= title %></title>
+
+		<link rel="shortcut icon" href="https://demo.learncodeweb.com/favicon.ico">
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<link rel="stylesheet" href="/stylesheets/style.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="adduser-button-section">
+				<button name="adduser" value="Add User" class="btn btn-primary" onclick="addUser();">Add User</button>
+			</div>
+			<% if (userList.length > 0) { %>
+				<div class="userlist-section">
+					<table class="table table-responsive">
+						<tr>
+							<th>User Id</th>
+							<th>First Name</th>
+							<th>Last Name</th>
+							<th>Birthdate</th>
+						</tr>
+						<% for (var i=0; i<userList.length; i++) { %>
+							<tr>
+								<td><%= userList[i].id %></td>
+								<td><%= userList[i].fname %></td>
+								<td><%= userList[i].lname %></td>
+								<td><%= moment(userList[i].dob).format('DD-MM-YYYY') %></td>
+
+								<td>
+									<button class="btn btn-primary" type="button" name="edit" value="Edit" onclick="javascript:window.location.href='/users/edituser/<%= userList[i].id %>'">Edit</button>
+								</td>
+
+								<td>
+									<button class="btn btn-primary" type="button" name="delete" value="delete" onclick="javascript:window.location.href='/users/deleteuser/<%= userList[i].id %>'">Delete</button>
+								</td>
+							</tr>
+						<% } %>
+					</table>
+				</div>
+			<% } %>
+		</div>
+
+		<script src="/javascripts/general.js"></script>
+	</body>
+</html>
